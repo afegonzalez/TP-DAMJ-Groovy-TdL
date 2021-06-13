@@ -1,8 +1,0 @@
-import fiublix.Movie
-
-model {
-	Iterable<Movie> movieList
-}
-
-json tmpl.movie(movieList ?: [])
-

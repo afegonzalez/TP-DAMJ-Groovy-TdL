@@ -1,7 +1,0 @@
-import fiublix.Movie
-
-model {
-	Movie movie
-}
-
-json g.render(movie, [resolveTemplate: false])

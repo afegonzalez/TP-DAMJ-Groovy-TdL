@@ -1,7 +1,0 @@
-import fiublix.User
-
-model {
-	User user
-}
-
-json tmpl.user(user)
