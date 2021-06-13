@@ -12,13 +12,13 @@ Trabajo Practico para 7531 - Teoría de Lenguaje
 
 Una vez clonado el repositorio se debe ejecutar:
 
-En el path del client:
+En el path del server:
 
 ```console
 $ grails run-app
 ```
 
-En el path del server (por primera vez): 
+En el path del cliente (por primera vez): 
 
 ```console
 $ npm install
@@ -31,7 +31,9 @@ $ npm start
 ```
 
 
-Y dirigirse a localhost:8080
+Dirigirse a localhost:8080 para acceder al server
+
+Dirigirse a localhost:3000 para acceder al cliente
 
 ## Ejecuación de las pruebas
 
