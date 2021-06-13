@@ -1,0 +1,7 @@
+import fiublix.Movie
+
+model {
+	Movie movie
+}
+
+json tmpl.movie(movie)
