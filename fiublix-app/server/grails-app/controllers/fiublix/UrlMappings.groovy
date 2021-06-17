@@ -12,6 +12,8 @@ class UrlMappings {
 
         "/user"(resources:"user")
         
+        post "/user/$userId/addFriend"(controller: 'user', action: 'addFriend')
+
 
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')

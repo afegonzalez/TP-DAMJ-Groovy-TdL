@@ -45,4 +45,20 @@ class UserController {
         }
     }
 
+        /*
+    POST: Agregar amigos.
+    - userId
+    - friendID
+    */
+    @Transactional
+    def addFriend(Long userId) {
+        try {
+            Long friendId = request.JSON.friendId
+            User user = userService.addFriend(userId,friendId)
+            respond([user: user], status: OK)
+        } catch (RuntimeException e) {
+            render(text: e.message, status: BAD_REQUEST)
+        }
+    }
+
 }
