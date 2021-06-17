@@ -6,11 +6,8 @@ class User {
     String name
     String lastName
     String email
-    List<Movie> favoritesMovies
-    List<Movie> recommendedMovies
 
-    static hasMany = [friends: User]
-
+    static hasMany = [friends: User, favoriteMovies: Movie, recommendedMovies: Movie]
 
     static constraints = {
         name blank: false, minSize: 1, maxSize: 150
@@ -18,10 +15,5 @@ class User {
         userName blank: false, unique: true, minSize: 1, maxSize: 20
         email blank: false, unique: true, email: true
     }
-
-
-    void addFriend(User friend){
-        this.friends.add(friend);
-    };
 
 }

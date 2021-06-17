@@ -18,14 +18,10 @@ class UserService {
         User firstUser = this.getUser(userId);
         User secondUser = this.getUser(friendId);
 
-        firstUser.addFriend(secondUser);
-        secondUser.addFriend(firstUser);
+        firstUser.addToFriends(secondUser);
+        secondUser.addToFriends(firstUser);
 
         return secondUser
     }
-
-
-
-
 
 }
