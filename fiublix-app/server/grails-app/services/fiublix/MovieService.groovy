@@ -23,7 +23,7 @@ class MovieService {
     }
 
     Movie getMovie(Long movieId){
-        Movie movie =  Movie.findById(userId);
-        return movie;
+        Movie movie =  Movie.findById(movieId);
+        return movie
     }
 }
