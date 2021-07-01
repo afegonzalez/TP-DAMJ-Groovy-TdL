@@ -13,7 +13,7 @@ class UrlMappings {
         "/user"(resources:"user")
         
         post "/user/$userId/addFriend"(controller: 'user', action: 'addFriend')
-
+        post "/user/$userId/addFavoriteMovie"(controller: 'user', action: 'addMovie')
 
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')
