@@ -4,6 +4,7 @@ import grails.gorm.transactions.Transactional
 
 @Transactional
 class UserService {
+    MovieService movieService;
 
     def addUser(User user) {
         user.save flush:true
@@ -22,6 +23,16 @@ class UserService {
         secondUser.addToFriends(firstUser);
 
         return secondUser
+    }
+
+    def addMovie(Long userId, Long movieId) {
+        User user = this.getUser(userId);
+        Movie movie = movieService.getMovie(movieId);
+
+        user.addToFavoriteMovies(movie);
+        println(movie.id)
+        return user
+
     }
 
 }
