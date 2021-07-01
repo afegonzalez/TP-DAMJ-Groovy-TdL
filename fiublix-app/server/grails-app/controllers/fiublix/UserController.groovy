@@ -61,4 +61,20 @@ class UserController {
         }
     }
 
+    /*
+    POST: Agregar película a favoritos.
+    - userId
+    - nameMovie
+    */
+    @Transactional
+    def addMovie(Long userId) {
+        try {
+            Long movieId = request.JSON.movieId
+            User user = userService.addMovie(userId, movieId)
+            respond([user: user], status: OK)
+        } catch (RuntimeException e) {
+            render(text: e.message, status: BAD_REQUEST)
+        }
+    }
+
 }
