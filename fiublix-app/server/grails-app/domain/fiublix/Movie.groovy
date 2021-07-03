@@ -1,13 +1,17 @@
 package fiublix
 
 class Movie {
-    //https://v2.sg.media-imdb.com/suggestion/t/titanic.json
 
     String name
     String image
     List<String> protagonists
     String director
     String year
+    String description
+    Long idTmdb
+    String originalLanguage
+    Date releaseDate
+    Boolean forAdults
 
     static hasMany = [user: User]
     static belongsTo = [user: User]
@@ -18,5 +22,10 @@ class Movie {
         protagonists nullable: true
         director nullable: true
         year nullable: true
+        idTmdb nullable: true
+        description nullable: true
+        originalLanguage nullable: true
+        releaseDate nullable: true
+        forAdults nullable: true
     }
 }
