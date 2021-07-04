@@ -77,4 +77,19 @@ class UserController {
         }
     }
 
+    /*
+    GET: Buscar peliculas del circulo de amigos.
+    - movieId
+    */
+    @Transactional
+    def getCircleMovies(Long userId) {
+        try {
+            List<Movie> circleMovies = userService.getCircleMovies(userId);
+            respond([circleMovies: circleMovies], status: OK)
+        } catch (RuntimeException e) {
+            render(text: e.message, status: BAD_REQUEST)
+            log.error "Error: ${e.message}", e
+        }
+    }
+
 }

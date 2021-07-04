@@ -15,6 +15,13 @@ class UserService {
         return user;
     }*/
 
+    List<Movie> getCircleMovies(Long userId){
+        User user =  User.findById(userId);
+        circleMovies = user.getFriendsMovies()
+        return circleMovies;
+    }
+
+
     def addFriend(Long userId, Long friendId){
         User firstUser = this.getUser(userId);
         User secondUser = this.getUser(friendId);

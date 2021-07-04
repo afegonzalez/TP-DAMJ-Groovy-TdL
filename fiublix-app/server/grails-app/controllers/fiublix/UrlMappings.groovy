@@ -12,10 +12,13 @@ class UrlMappings {
 
         "/user"(resources:"user")
         
+        get "/user/$userId/circle"(controller: 'user', action: 'getCircleMovies')
+
         post "/user/$userId/addFriend"(controller: 'user', action: 'addFriend')
         post "/user/$userId/addFavoriteMovie"(controller: 'user', action: 'addMovie')
 
         "/movies"(resources:"movie")
+
         post "/movies/$movieid/similar"(controller: 'movie', action: 'searchSimilarMovie')
 
 

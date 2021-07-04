@@ -40,4 +40,10 @@ class User implements Serializable {
 	    password column: '`password`'
     }
 
+    List<Movie> getFriendsMovies(){
+        List<Movie> friendsMovies = this.favoriteMovies as List<Movie>;
+        friends.each {friend -> friend.favoriteMovies.each {movie -> friendsMovies.add(movie)}}
+        return friendsMovies;
+    }
+
 }

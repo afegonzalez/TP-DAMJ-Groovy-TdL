@@ -40,7 +40,7 @@ class MovieController {
     }
 
     /*
-    POST: Buscar pelucula similar a la dada.
+    POST: Buscar pelicula similar a la dada.
     - movieId
     */
     @Transactional
@@ -54,6 +54,10 @@ class MovieController {
             respond([movies: similarMovies], status: OK)
         } catch (RuntimeException e) {
             render(text: e.message, status: BAD_REQUEST)
+            log.error "Error: ${e.message}", e
         }
     }
+
+
+
 }

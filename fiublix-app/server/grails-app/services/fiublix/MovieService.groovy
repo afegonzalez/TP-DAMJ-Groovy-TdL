@@ -6,7 +6,9 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class MovieService {
 
+    UserService userService
     GrailsApplication grailsApplication
+
     def addMovie(Movie movie) {
         def apiKey = grailsApplication.config.getProperty('environments.development.tmdb.apiKey')
         println(apiKey)
