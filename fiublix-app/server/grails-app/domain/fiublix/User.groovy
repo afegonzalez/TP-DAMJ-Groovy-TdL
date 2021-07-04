@@ -1,19 +1,43 @@
 package fiublix
 
-class User {
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+import grails.compiler.GrailsCompileStatic
 
-    String userName
-    String name
+@GrailsCompileStatic
+@EqualsAndHashCode(includes='username')
+@ToString(includes='username', includeNames=true, includePackage=false)
+class User implements Serializable {
+
+    private static final long serialVersionUID = 1
+
+    String username
+    String password
+    /*String name
     String lastName
-    String email
+    String email*/
+
+    boolean enabled = true
+    boolean accountExpired
+    boolean accountLocked
+    boolean passwordExpired
 
     static hasMany = [friends: User, favoriteMovies: Movie, recommendedMovies: Movie]
 
+    Set<Role> getAuthorities() {
+        (UserRole.findAllByUser(this) as List<UserRole>)*.role as Set<Role>
+    }
+
     static constraints = {
-        name blank: false, minSize: 1, maxSize: 150
+        username nullable: false, blank: false, unique: true, minSize: 1, maxSize: 20
+        password nullable: false, blank: false, password: true
+        /*name blank: false, minSize: 1, maxSize: 150
         lastName blank: false, minSize: 1, maxSize: 150
-        userName blank: false, unique: true, minSize: 1, maxSize: 20
-        email blank: false, unique: true, email: true
+        email blank: false, unique: true, email: true*/
+    }
+
+    static mapping = {
+	    password column: '`password`'
     }
 
 }

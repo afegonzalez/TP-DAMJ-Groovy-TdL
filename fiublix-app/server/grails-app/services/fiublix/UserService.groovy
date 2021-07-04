@@ -6,14 +6,14 @@ import grails.gorm.transactions.Transactional
 class UserService {
     MovieService movieService;
 
-    def addUser(User user) {
+    /*def addUser(User user) {
         user.save flush:true
     }
 
     User getUser(Long userId){
         User user =  User.findById(userId);
         return user;
-    }
+    }*/
 
     def addFriend(Long userId, Long friendId){
         User firstUser = this.getUser(userId);
