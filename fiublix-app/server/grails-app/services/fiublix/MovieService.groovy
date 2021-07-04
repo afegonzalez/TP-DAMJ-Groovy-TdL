@@ -48,6 +48,43 @@ class MovieService {
         movie.save flush:true
     }
 
+    List<Movie> searchSimilarMovie(Movie movie) {
+        def apiKey = grailsApplication.config.getProperty('environments.development.tmdb.apiKey')
+        println(apiKey)
+      //  def query = java.net.URLEncoder.encode(movie.idTmdb, "UTF-8")
+
+        //www.themoviedb.org
+        def urlTmdb = "https://api.themoviedb.org/3/movie/${movie.idTmdb}/similar?api_key=${apiKey}"
+        println(urlTmdb)
+        try {
+            def jsonTmdb = new groovy.json.JsonSlurper().parseText(urlTmdb.toURL().getText())
+            println(jsonTmdb['results']['id'])
+            List<Movie> similarMovies;
+            return similarMovies
+        } catch (Exception e) {
+            println("Error en tmdb")
+        }
+
+        //www.imdb.com
+        /*
+        def url = "https://v2.sg.media-imdb.com/suggestion/t/${movie.name}.json"
+        try {
+            def json = new groovy.json.JsonSlurper().parseText(url.toURL().getText())
+            movie.image = json['d'][0]['i']['imageUrl']
+            movie.protagonists = json['d'][0]['s'].split(',')
+            movie.director = json['d'][0]['v'][-1]['l']
+            movie.year = json['d'][0]['y']
+        } catch (IOException e) {
+            movie.image = "No disponible"
+            movie.director = "No disponible"
+            movie.year = "No disponible"
+        }
+        */
+        movie.save flush:true
+    }
+
+    
+
     Movie getMovie(Long movieId){
         Movie movie =  Movie.findById(movieId);
         return movie

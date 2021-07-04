@@ -38,4 +38,22 @@ class MovieController {
             }
         }
     }
+
+    /*
+    POST: Buscar pelucula similar a la dada.
+    - movieId
+    */
+    @Transactional
+    def searchSimilarMovie(Long movieId) {
+        try {
+            Long requestedMovieId = request.JSON.movieId
+            Movie movie = movieService.getMovie(requestedMovieId)
+            
+            List<Movie> similarMovies = movieService.searchSimilarMovie();
+
+            respond([movies: similarMovies], status: OK)
+        } catch (RuntimeException e) {
+            render(text: e.message, status: BAD_REQUEST)
+        }
+    }
 }

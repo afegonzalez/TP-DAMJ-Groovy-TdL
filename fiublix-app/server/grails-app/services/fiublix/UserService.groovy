@@ -32,7 +32,6 @@ class UserService {
         user.addToFavoriteMovies(movie);
         println(movie.id)
         return user
-
     }
 
 }

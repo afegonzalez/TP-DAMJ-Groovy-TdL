@@ -15,6 +15,10 @@ class UrlMappings {
         post "/user/$userId/addFriend"(controller: 'user', action: 'addFriend')
         post "/user/$userId/addFavoriteMovie"(controller: 'user', action: 'addMovie')
 
+        "/movies"(resources:"movie")
+        post "/movies/$movieid/similar"(controller: 'movie', action: 'searchSimilarMovie')
+
+
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')
         "404"(view: '/notFound')
