@@ -36,9 +36,9 @@ class MovieController {
         } else {
             try {
                 movieService.addMovie(movie)
-                respond([movie:movie], status: CREATED)
+                respond([movie:movie], status: 201)
             } catch (Exception e) {
-                render(text: e.message, status: BAD_REQUEST)
+                render(text: e.message, status: 400)
             }
         }
     }
