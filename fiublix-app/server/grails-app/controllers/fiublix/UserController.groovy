@@ -93,4 +93,22 @@ class UserController {
         }
     }
 
+    /*
+    POST: Recomendar película a amigo.
+    - userId
+    - friendId
+    - nameMovie
+    */
+    @Transactional
+    def recommendMovie(Long userId) {
+        try {
+            Long movieId = request.JSON.movieId
+            Long friendId = request.JSON.friendId
+            User friend = userService.addRecommendedMovie(friendId, movieId)
+            respond([friend: friend], status: 200)
+        } catch (RuntimeException e) {
+            render(text: e.message, status: 400)
+        }
+    }
+
 }

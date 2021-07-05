@@ -16,6 +16,7 @@ class UrlMappings {
 
         post "/user/$userId/addFriend"(controller: 'user', action: 'addFriend')
         post "/user/$userId/addFavoriteMovie"(controller: 'user', action: 'addMovie')
+        post "/user/$userId/recommendMovie"(controller: 'user', action: 'recommendMovie')
 
         "/movies"(resources:"movie")
 
