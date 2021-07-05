@@ -9,7 +9,7 @@ import grails.gorm.transactions.Transactional
 
 @Transactional
 @Secured('isAuthenticated()')
-class UserController {
+class UserController extends ExceptionController {
 
     UserService userService;
 
@@ -53,13 +53,9 @@ class UserController {
     */
     @Transactional
     def addFriend(Long userId) {
-        try {
-            Long friendId = request.JSON.friendId
-            User user = userService.addFriend(userId,friendId)
-            respond([user: user], status: 200)
-        } catch (RuntimeException e) {
-            render(text: e.message, status: 400)
-        }
+        Long friendId = request.JSON.friendId
+        User user = userService.addFriend(userId,friendId)
+        respond([user: user], status: 200)
     }
 
     /*
@@ -69,13 +65,9 @@ class UserController {
     */
     @Transactional
     def addMovie(Long userId) {
-        try {
-            Long movieId = request.JSON.movieId
-            User user = userService.addMovie(userId, movieId)
-            respond([user: user], status: 200)
-        } catch (RuntimeException e) {
-            render(text: e.message, status: 400)
-        }
+        Long movieId = request.JSON.movieId
+        User user = userService.addMovie(userId, movieId)
+        respond([user: user], status: 200)
     }
 
     /*
@@ -84,13 +76,8 @@ class UserController {
     */
     @Transactional
     def getCircleMovies(Long userId) {
-        try {
-            List<Movie> circleMovies = userService.getCircleMovies(userId);
-            respond([circleMovies: circleMovies], status: 200)
-        } catch (RuntimeException e) {
-            render(text: e.message, status: 400)
-            log.error "Error: ${e.message}", e
-        }
+        List<Movie> circleMovies = userService.getCircleMovies(userId);
+        respond([circleMovies: circleMovies], status: 200)
     }
 
     /*
@@ -101,14 +88,10 @@ class UserController {
     */
     @Transactional
     def recommendMovie(Long userId) {
-        try {
-            Long movieId = request.JSON.movieId
-            Long friendId = request.JSON.friendId
-            User friend = userService.addRecommendedMovie(friendId, movieId)
-            respond([friend: friend], status: 200)
-        } catch (RuntimeException e) {
-            render(text: e.message, status: 400)
-        }
+        Long movieId = request.JSON.movieId
+        Long friendId = request.JSON.friendId
+        User friend = userService.addRecommendedMovie(friendId, movieId)
+        respond([friend: friend], status: 200)
     }
 
 }
