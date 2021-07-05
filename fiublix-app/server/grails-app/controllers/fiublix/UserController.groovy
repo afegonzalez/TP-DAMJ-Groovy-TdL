@@ -1,12 +1,14 @@
 package fiublix
 
+import groovy.transform.CompileStatic
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.userdetails.GrailsUser
 
-import grails.rest.*
-import grails.converters.*
 import grails.gorm.transactions.Transactional
-import static org.springframework.http.HttpStatus.*
 
-
+@Transactional
+@Secured('isAuthenticated()')
 class UserController {
 
     UserService userService;
@@ -28,7 +30,6 @@ class UserController {
         }
     }
 
-
     @Transactional
     def save(User user) {
 
@@ -40,7 +41,7 @@ class UserController {
                 userService.addUser(user)
                 respond([user:user], status: CREATED)
             } catch (Exception e) {
-                render(text: e.message, status: BAD_REQUEST)
+                render(text: e.message, status: 400)
             }
         }
     }
@@ -55,9 +56,9 @@ class UserController {
         try {
             Long friendId = request.JSON.friendId
             User user = userService.addFriend(userId,friendId)
-            respond([user: user], status: OK)
+            respond([user: user], status: 200)
         } catch (RuntimeException e) {
-            render(text: e.message, status: BAD_REQUEST)
+            render(text: e.message, status: 400)
         }
     }
 
@@ -71,9 +72,9 @@ class UserController {
         try {
             Long movieId = request.JSON.movieId
             User user = userService.addMovie(userId, movieId)
-            respond([user: user], status: OK)
+            respond([user: user], status: 200)
         } catch (RuntimeException e) {
-            render(text: e.message, status: BAD_REQUEST)
+            render(text: e.message, status: 400)
         }
     }
 
@@ -85,9 +86,9 @@ class UserController {
     def getCircleMovies(Long userId) {
         try {
             List<Movie> circleMovies = userService.getCircleMovies(userId);
-            respond([circleMovies: circleMovies], status: OK)
+            respond([circleMovies: circleMovies], status: 200)
         } catch (RuntimeException e) {
-            render(text: e.message, status: BAD_REQUEST)
+            render(text: e.message, status: 400)
             log.error "Error: ${e.message}", e
         }
     }

@@ -1,10 +1,14 @@
 package fiublix
 
-import grails.rest.*
-import grails.converters.*
-import grails.gorm.transactions.Transactional
-import static org.springframework.http.HttpStatus.*
+import groovy.transform.CompileStatic
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.userdetails.GrailsUser
 
+import grails.gorm.transactions.Transactional
+
+@Transactional
+@Secured('isAuthenticated()')
 class MovieController {
     MovieService movieService;
 

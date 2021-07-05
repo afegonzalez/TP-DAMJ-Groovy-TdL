@@ -112,3 +112,16 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+    plugin:
+        springsecurity:
+            controllerAnnotations:
+                chainMap:
+                    '/api/**': 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter'
+                    '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'
+            rest:
+                logout:
+                    endpointUrl: '/api/logout'
+                token:
+                    validation: 
+                        useBearerToken: false
+                        headerName: 'X-Auth-Token'

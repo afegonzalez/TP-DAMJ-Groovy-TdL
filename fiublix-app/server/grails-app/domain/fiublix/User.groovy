@@ -13,9 +13,9 @@ class User implements Serializable {
 
     String username
     String password
-    /*String name
+    String name
     String lastName
-    String email*/
+    String email
 
     boolean enabled = true
     boolean accountExpired
@@ -31,9 +31,9 @@ class User implements Serializable {
     static constraints = {
         username nullable: false, blank: false, unique: true, minSize: 1, maxSize: 20
         password nullable: false, blank: false, password: true
-        /*name blank: false, minSize: 1, maxSize: 150
+        name blank: false, minSize: 1, maxSize: 150
         lastName blank: false, minSize: 1, maxSize: 150
-        email blank: false, unique: true, email: true*/
+        email blank: false, unique: true, email: true
     }
 
     static mapping = {
