@@ -36,7 +36,16 @@ class UserService {
         Movie movie = movieService.getMovie(movieId);
 
         user.addToFavoriteMovies(movie);
-        println(movie.id)
+        
+        return user
+    }
+
+    def addRecommendedMovie(Long userId, Long movieId) {
+        User user = this.getUser(userId);
+        Movie movie = movieService.getMovie(movieId);
+
+        user.addToRecommendedMovies(movie);
+        
         return user
     }
 
