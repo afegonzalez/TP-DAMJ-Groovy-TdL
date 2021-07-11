@@ -23,7 +23,7 @@ class UserController extends ExceptionController {
 
     def show(User user) {
         if (user == null) {
-            render status:404
+            throw new UserNotFoundException()
         }
         else {
             return [user: user]
@@ -41,7 +41,7 @@ class UserController extends ExceptionController {
                 userService.addUser(user)
                 respond([user:user], status: CREATED)
             } catch (Exception e) {
-                render(text: e.message, status: 400)
+                throw new Exception("User could not save")
             }
         }
     }
