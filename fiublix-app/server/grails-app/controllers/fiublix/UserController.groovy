@@ -94,4 +94,9 @@ class UserController extends ExceptionController {
         respond([friend: friend], status: 200)
     }
 
+    def connectException(final ConnectException exception) {
+        log.error "Error: ", exception
+        render(text: "Connection error", status: 503)
+    }
+
 }
